@@ -4,7 +4,7 @@ export interface Todo {
   completed: boolean;
 }
 
-const seed = [
+const seed: Todo[] = [
   { id: 1, title: 'Learn CI/CD', completed: false },
   { id: 2, title: 'Write tests', completed: true },
 ];
