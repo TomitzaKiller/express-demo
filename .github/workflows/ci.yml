@@ -11,6 +11,26 @@ on:
 
 
 jobs:
+
+    test:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v5
+
+            - name: Setup NodeJS
+              uses: actions/setup-node@v5
+              with:
+                node-version: 26
+                cache: npm
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Run tests
+              run: npm run test
+
     lint:
         runs-on: ubuntu-latest
 
