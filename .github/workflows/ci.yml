@@ -30,5 +30,21 @@ jobs:
             - name: Lint
               run: npm run lint
 
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v5
+
+            - name: Setup NodeJS
+              uses: actions/setup-node@v5
+              with:
+                node-version: 26
+                cache: npm
+
+            - name: Install dependencies
+              run: npm ci
+
             - name: Build project
               run: npm run build
