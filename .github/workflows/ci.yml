@@ -16,18 +16,32 @@ jobs:
         needs: lint
         runs-on: ubuntu-latest
 
+        strategy:
+            matrix:
+                node-version: [22, 24, 26]
+
         steps:
             - uses: actions/checkout@v5
             - uses: ./.github/actions/setup-project
+              with:
+                node-version: ${{ matrix.node-version }}
+                
             - run: npm run test
 
     lint:
         needs: build
         runs-on: ubuntu-latest
 
+        strategy:
+            matrix:
+                node-version: [22, 24, 26]
+
         steps:
             - uses: actions/checkout@v5
             - uses: ./.github/actions/setup-project
+              with:
+                node-version: ${{ matrix.node-version }}
+
             - run: npm run lint
 
     build:
@@ -42,5 +56,5 @@ jobs:
             - uses: ./.github/actions/setup-project
               with:
                 node-version: ${{ matrix.node-version }}
-                
+
             - run: npm run build
