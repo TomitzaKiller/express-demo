@@ -17,40 +17,18 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - name: Checkout code
-              uses: actions/checkout@v5
-
-            - name: Setup NodeJS
-              uses: actions/setup-node@v5
-              with:
-                node-version: 26
-                cache: npm
-
-            - name: Install dependencies
-              run: npm ci
-
-            - name: Run tests
-              run: npm run test
+            - uses: actions/checkout@v5
+            - uses: ./.github/actions/setup-project
+            - run: npm run test
 
     lint:
         needs: build
         runs-on: ubuntu-latest
 
         steps:
-            - name: Checkout code
-              uses: actions/checkout@v5
-
-            - name: Setup NodeJS
-              uses: actions/setup-node@v5
-              with:
-                node-version: 26
-                cache: npm
-
-            - name: Install dependencies
-              run: npm ci
-
-            - name: Lint
-              run: npm run lint
+            - uses: actions/checkout@v5
+            - uses: ./.github/actions/setup-project
+            - run: npm run lint
 
     build:
         runs-on: ubuntu-latest
@@ -58,6 +36,4 @@ jobs:
         steps:
             - uses: actions/checkout@v5
             - uses: ./.github/actions/setup-project
-
-            - name: Build project
-              run: npm run build
+            - run: npm run build
