@@ -33,6 +33,10 @@ jobs:
     build:
         runs-on: ubuntu-latest
 
+        strategy:
+            matrix:
+                node-version: [22,24,26]
+
         steps:
             - uses: actions/checkout@v5
             - uses: ./.github/actions/setup-project
