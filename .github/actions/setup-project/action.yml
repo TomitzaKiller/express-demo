@@ -2,6 +2,12 @@
 name: Setup Node Project
 description: Used to setup node project and install dependencies
 
+inputs:
+  node-version:
+    required: false
+    default: 26
+
+
 runs:
   using: composite
 
@@ -9,7 +15,7 @@ runs:
 
     - uses: actions/setup-node@v5
       with:
-        node-version: 26
+        node-version: ${{ inputs.node-version }}
         cache: npm
 
     - run: npm ci
