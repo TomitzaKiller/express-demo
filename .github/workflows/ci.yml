@@ -30,6 +30,10 @@ jobs:
 
             - run: npm run test
 
+            - name: Coverage
+              if: matrix.os == 'ubuntu-latest' && matrix.node-version == 26
+              run: npm run coverage
+
     lint:
         needs: build
         runs-on: ${{ matrix.os }}
